@@ -10,8 +10,8 @@ from datetime import datetime
 
 # Get environment variables
 MQTT_BROKER = os.getenv('MQTT_BROKER_SERVICE_NAME', 'mqtt-service')
-IMAGE_GENERATION_INTERVAL = float(os.getenv('IMAGE_GENERATION_INTERVAL', 1.0))
-IMAGE_TOPIC = os.getenv('IMAGE_TOPIC', 1)
+IMAGE_GENERATION_INTERVAL_IN_SECONDS = float(os.getenv('IMAGE_GENERATION_INTERVAL_IN_SECONDS', 1.0))
+MQTT_IMAGE_TOPIC = os.getenv('MQTT_IMAGE_TOPIC', 1)
 
 # Function to generate a random image
 def generate_random_image():
@@ -55,8 +55,8 @@ while True:
        }
    }
    json_message = json.dumps(message)
-   client.publish(IMAGE_TOPIC, json_message)
-   sleep(IMAGE_GENERATION_INTERVAL)
+   client.publish(MQTT_IMAGE_TOPIC, json_message)
+   sleep(IMAGE_GENERATION_INTERVAL_IN_SECONDS)
 
 # Disconnect from MQTT broker
 #client.disconnect()

@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const mqtt = require('mqtt')
 const mqttBrokerServiceName = process.env.MQTT_BROKER_SERVICE_NAME;
 const webSocketPort = process.env.WEB_SOCKET_PORT;
-const imageTopic = process.env.IMAGE_TOPIC;
+const imageTopic = process.env.MQTT_IMAGE_TOPIC;
 const mqttClient = mqtt.connect(`mqtt://${mqttBrokerServiceName}`)
 
 let clients = [];

@@ -18,7 +18,7 @@ services:
     environment:
       - MQTT_BROKER_SERVICE_NAME=${MQTT_BROKER_SERVICE_NAME} 
       - WEB_SOCKET_PORT=${WEB_SOCKET_PORT} 
-      - IMAGE_TOPIC=${IMAGE_TOPIC}
+      - MQTT_IMAGE_TOPIC=${MQTT_IMAGE_TOPIC}
   
   image-generator-service:
     build: ./image-generator-service
@@ -28,8 +28,8 @@ services:
       - ${MQTT_BROKER_SERVICE_NAME}
     environment:
       - MQTT_BROKER_SERVICE_NAME=${MQTT_BROKER_SERVICE_NAME} 
-      - IMAGE_GENERATION_INTERVAL=${IMAGE_GENERATION_INTERVAL} 
-      - IMAGE_TOPIC=${IMAGE_TOPIC}
+      - IMAGE_GENERATION_INTERVAL_IN_SECONDS=${IMAGE_GENERATION_INTERVAL_IN_SECONDS} 
+      - MQTT_IMAGE_TOPIC=${MQTT_IMAGE_TOPIC}
 
   client-app:
     build: ./client-app

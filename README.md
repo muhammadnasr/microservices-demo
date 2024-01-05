@@ -16,15 +16,6 @@ You need to have Docker and Docker Compose installed on your machine to build an
 
 Before you start, you need to configure the application. Copy the `.env.sample` file to a new file named `.env` and update the values as needed:
 
-```sh {"id":"01HKBXCB97MPZG0KWW3FEDCWM1"}
-MQTT_BROKER_SERVICE_NAME=mqtt-service
-WEB_SOCKET_HOST_NAME=localhost
-WEB_SOCKET_PORT=8080
-CLIENT_APP_PORT=3000
-IMAGE_TOPIC=topic/image
-IMAGE_GENERATION_INTERVAL=0.2
-```
-
 ## Building and Running the Project
 
 To build the Docker images for this project, run the following command in your terminal:
