@@ -1,4 +1,5 @@
 # .gitignore
+.env
 
 # Node.js
 node_modules/
@@ -15,12 +16,7 @@ env/
 venv/
 *.pot
 *.pyc
-*.pyo
-*.pyd
 *.pydb
-*.pyc
-*.pyo
-*.pyd
 *.so
 *.dylib
 .ipynb_checkpoints

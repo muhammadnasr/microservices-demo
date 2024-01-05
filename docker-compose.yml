@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mqtt-service:
+    image: eclipse-mosquitto
+    volumes:
+      - ./mqtt-service/mosquitto.conf:/mosquitto/config/mosquitto.conf
+  
+  image-dispatcher-service:
+    build: ./image-dispatcher-service
+    volumes:
+      - ./image-dispatcher-service:/app
+    depends_on:
+      - ${MQTT_BROKER_SERVICE_NAME}
+    ports:
+      - "${WEB_SOCKET_PORT}:${WEB_SOCKET_PORT}"
+    environment:
+      - MQTT_BROKER_SERVICE_NAME=${MQTT_BROKER_SERVICE_NAME} 
+      - WEB_SOCKET_PORT=${WEB_SOCKET_PORT} 
+      - IMAGE_TOPIC=${IMAGE_TOPIC}
+  
+  image-generator-service:
+    build: ./image-generator-service
+    volumes:
+      - ./image-generator-service:/app
+    depends_on:
+      - ${MQTT_BROKER_SERVICE_NAME}
+    environment:
+      - MQTT_BROKER_SERVICE_NAME=${MQTT_BROKER_SERVICE_NAME} 
+      - IMAGE_GENERATION_INTERVAL=${IMAGE_GENERATION_INTERVAL} 
+      - IMAGE_TOPIC=${IMAGE_TOPIC}
