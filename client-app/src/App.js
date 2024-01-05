@@ -5,10 +5,11 @@ function App() {
   const wsRef = useRef(null);
   const connect = useCallback(() => {
 
-
-    wsRef.current = new WebSocket(`ws://${process.env.REACT_APP_WEB_SOCKET_HOST_NAME || 'localhost'}:8080`);
+    const hostName = process.env.REACT_APP_WEB_SOCKET_HOST_NAME;
+    const port = process.env.REACT_APP_WEB_SOCKET_PORT;
+    wsRef.current = new WebSocket(`ws://${hostName}:${port}`);
     wsRef.current.onopen = () => {
-      console.log('Connected to:' + process.env.REACT_APP_WEB_SOCKET_HOST_NAME);
+      console.log(`Connected to: ${hostName}:${port}`);
     };
 
     wsRef.current.onmessage = (event) => {

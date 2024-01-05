@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  # WARNING: The name of this service must be identical to the MQTT_BROKER_SERVICE_NAME defined in the .env file
   mqtt-service:
     image: eclipse-mosquitto
     volumes:
@@ -29,3 +30,15 @@ services:
       - MQTT_BROKER_SERVICE_NAME=${MQTT_BROKER_SERVICE_NAME} 
       - IMAGE_GENERATION_INTERVAL=${IMAGE_GENERATION_INTERVAL} 
       - IMAGE_TOPIC=${IMAGE_TOPIC}
+
+  client-app:
+    build: ./client-app
+    volumes:
+      - ./client-app:/app
+      - /app/node_modules
+    ports:
+      - "${CLIENT_APP_PORT}:${CLIENT_APP_PORT}"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_WEB_SOCKET_HOST_NAME=${WEB_SOCKET_HOST_NAME}
+      - REACT_APP_WEB_SOCKET_PORT=${WEB_SOCKET_PORT}
