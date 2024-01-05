@@ -1,12 +1,3 @@
----
-runme:
-  id: 01HKBX38WM2FJNBSXMCVJVQCC7
-  version: v2.0
----
-
-Sure, here's a basic `README.md` file for your project:
-
-```markdown {"id":"01HKBX3R0765TTZ3FA4A3PN7AQ"}
 # Microservices Demo
 
 This project aims to demonstrate the development of a full-stack system using Python, and Node.js. It includes a Python microservice that generates and encodes random images, sending them as JSON messages via an MQTT broker. Additionally, it involves developing a Node.js application to receive these messages and relay them to a webpage client in real-time using a WebSocket server. To containerize the Python and Node.js applications, along with the MQTT broker, and orchestrate their interaction, we are currently using Docker Compose. However, we have the flexibility to switch to Kubernetes for orchestration in the future.
@@ -26,8 +17,6 @@ IMAGE_TOPIC=topic/image
 IMAGE_GENERATION_INTERVAL=1
 ```
 
-
-
 ## Building and Running the Project
 
 To build the Docker images for this project, run the following command in your terminal:
@@ -36,14 +25,11 @@ To build the Docker images for this project, run the following command in your t
 docker-compose build
 ```
 
-
-
 After the build completes, you can start the application by running:
 
 ```sh {"id":"01HKBX3R07SM0KFRRVW65DZPXX"}
 docker-compose up
 ```
-
 
 This will start all the services defined in your `docker-compose.yml` file.
 
