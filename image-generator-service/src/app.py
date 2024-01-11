@@ -31,11 +31,11 @@ def generate_random_image():
 
     return image, timestamp
 
-# Encode image to Base64
+# Encode image to Base64/mime type
 def encode_image(image):
     buffered = BytesIO()
     image.save(buffered, format="JPEG")
-    return base64.b64encode(buffered.getvalue()).decode('utf-8')
+    return "data:image/jpeg;base64," + base64.b64encode(buffered.getvalue()).decode('utf-8')
 
 # Create MQTT client
 client = mqtt.Client("image_publisher")
@@ -49,7 +49,6 @@ while True:
        'image': encoded_image,
        'metadata': {
            'generatedAt': timestamp,
-           'format': 'jpeg',
            'width': random_image.width,
            'height': random_image.height
        }

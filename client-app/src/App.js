@@ -46,7 +46,7 @@ function App() {
       {messages.map((message, index) => (
         <React.Fragment key={message.metadata.generatedAt}>
           <div style={{display: 'flex', justifyContent: 'center'}}>
-            <img src={`data:image/jpeg;base64,${message.image}`} alt="" />
+            <img src={message.image} alt="" />
             <div>
               <p>Generated at: {new Date(message.metadata.generatedAt).toString()}</p>
               <p>Received at: {new Date(message.metadata.receivedAt).toString()}</p>
